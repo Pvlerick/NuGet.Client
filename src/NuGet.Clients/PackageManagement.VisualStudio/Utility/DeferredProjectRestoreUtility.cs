@@ -38,7 +38,7 @@ namespace NuGet.PackageManagement.VisualStudio
         private static readonly string NuGetTargetFramework = "NuGetTargetFramework";
         private static readonly string PackageTargetFallback = "PackageTargetFallback";
         private static readonly string TargetPlatformIdentifier = "TargetPlatformIdentifier";
-        private static readonly string TargetPlatformVersion = "TargetPlatformVersion";
+        private static readonly string TargetPlatformMinVersion = "TargetPlatformMinVersion";
         private static readonly string TargetFrameworkMoniker = "TargetFrameworkMoniker";
 
 
@@ -426,7 +426,7 @@ namespace NuGet.PackageManagement.VisualStudio
             string projectPath)
         {
             var targetPlatformIdentifier = await deferredWorkspaceService.GetProjectPropertyAsync(dataService, TargetPlatformIdentifier);
-            var targetPlatformVersion = await deferredWorkspaceService.GetProjectPropertyAsync(dataService, TargetPlatformVersion);
+            var targetPlatformMinVersion = await deferredWorkspaceService.GetProjectPropertyAsync(dataService, TargetPlatformMinVersion);
             var targetFrameworkMoniker = await deferredWorkspaceService.GetProjectPropertyAsync(dataService, TargetFrameworkMoniker);
 
             var frameworkStrings = MSBuildProjectFrameworkUtility.GetProjectFrameworkStrings(
@@ -435,7 +435,7 @@ namespace NuGet.PackageManagement.VisualStudio
                 targetFramework: null,
                 targetFrameworkMoniker: targetFrameworkMoniker,
                 targetPlatformIdentifier: targetPlatformIdentifier,
-                targetPlatformVersion: targetPlatformVersion);
+                targetPlatformMinVersion: targetPlatformMinVersion);
 
             var frameworkString = frameworkStrings.FirstOrDefault();
 
